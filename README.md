@@ -2,4 +2,4 @@
 
 Predic cancer with several model and compaire those
 
-## Logstic Regression
+## Logistic Regression
