@@ -25,3 +25,16 @@ X_test = scalar.transform(X_test)
 lr_model = LogisticRegression(max_iter=10000)
 lr_model.fit(X_train, y_train)
 y_pred_lr = lr_model.predict(X_test)
+
+
+print("Accuracy:", accuracy_score(y_test, y_pred_lr))
+print("Classification Report:\n", classification_report(y_test, y_pred_lr))
+
+cm = confusion_matrix(y_test, y_pred_lr)
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=data.target_names,
+            yticklabels=data.target_names)
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Logistic Regression - Confusion Matrix")
+plt.show()
