@@ -2,8 +2,9 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
-
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 data = load_breast_cancer()
 X = data.data
@@ -26,4 +27,14 @@ y_pred = clf.predict(X_test)
 
 
 print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=data.target_names,
+            yticklabels=data.target_names)
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Logistic Regression - Confusion Matrix")
+plt.show()
